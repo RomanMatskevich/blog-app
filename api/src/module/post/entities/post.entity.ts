@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 import { HydratedDocument } from 'mongoose';
 
 export type PostDocument = HydratedDocument<Post>;
-@Schema()
+@Schema({ timestamps: true })
 export class Post {
     @Prop({
         type: String,
@@ -10,6 +10,12 @@ export class Post {
     })
     title: string;
 
+    @Prop({
+        type: String,
+        required: true
+    })
+    image: string;
+    
     @Prop({
         type: String,
         required: true
