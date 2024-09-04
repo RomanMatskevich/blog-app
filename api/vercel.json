@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "env": {
+        "MONGO_CONNECTION_STRING": "mongodb+srv://chaterroma:hVxxTN3m8HVsB01G@cluster0.knfnb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" 
+    },
+    "builds": [
+        {
+            "src": "src/main.ts",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Origin, X-Requested-With, Accept"
+            },
+            "dest": "src/main.ts",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ]
+        }
+    ]
+}
