@@ -1,7 +1,7 @@
 {
     "version": 2,
     "env": {
-        "MONGO_URI": "mongodb+srv://chaterroma:hVxxTN3m8HVsB01G@cluster0.knfnb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        "MONGO_CONNECTION_STRING": "mongodb+srv://chaterroma:hVxxTN3m8HVsB01G@cluster0.knfnb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     },
     "builds": [
         {
