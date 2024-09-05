@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps<{ posts: IFetchPost }> =
           limit: limit,
         }).toString()
     );
-    const posts: IFetchPost = await res.json();
+    const posts: IFetchPost = await res.json() || [];
     return { props: { posts } };
   }) satisfies GetServerSideProps<{ posts: IFetchPost }>;
 
