@@ -48,6 +48,15 @@ export default function Home({
       query: { page: value },
     });
   };
+  if(!posts){
+    return(
+      <main className="">
+        <div className="flex justify-center text-[5vh] text-black font-semibold">
+          Wait, loading content...
+        </div>
+      </main>
+    )
+  }
   return (
     <main>
       <div className="w-full flex justify-between px-10 sm:px-16 md:px-20 bg-green-600">
