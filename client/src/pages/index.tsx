@@ -15,16 +15,26 @@ export const getServerSideProps: GetServerSideProps<{ posts: IFetchPost }> =
     const { query } = context;
     const page = query.page ? query.page.toString() : "1";
     const limit = process.env.NEXT_PUBLIC_POSTS_ON_PAGE || "10";
-    const res = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI +
-        "/post?" +
-        new URLSearchParams({
-          page: page,
-          limit: limit,
-        }).toString()
-    );
-    const posts: IFetchPost = await res.json() || [];
-    return { props: { posts } };
+    try {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_SERVER_URI +
+          "/post?" +
+          new URLSearchParams({
+            page: page,
+            limit: limit,
+          }).toString()
+      );
+      
+      if (!res.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+
+      const posts: IFetchPost = await res.json();
+      return { props: { posts } };
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      return { props: { posts: { posts: [], total: 0 } } }; 
+    }
   }) satisfies GetServerSideProps<{ posts: IFetchPost }>;
 
 export default function Home({
